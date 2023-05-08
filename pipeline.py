@@ -9,7 +9,7 @@ import shutil
 import fsspec
 
 from config import Config
-f
+
 
 @task
 def merge_datasets():
