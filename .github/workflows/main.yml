@@ -1,12 +1,11 @@
 name: CI
 
 on:
-  schedule:
-    - cron: '0 6 * * *'
+  push:
 
 jobs:
   run:
-    name: DEH-Forge Data Pipeline
+    name: Hydrometric-Forge Data Pipeline
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.3

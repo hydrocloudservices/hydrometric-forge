@@ -15,3 +15,5 @@ class Config(object):
 
    
     DEH_ZARR_BUCKET = f"hydrometric/source/deh/zarr/{datetime.now().strftime('%Y-%m-%d')}/"
+
+    COMBINED_ZARR_BUCKET = f"hydrometric/source/combined/zarr/{datetime.now().strftime('%Y-%m-%d')}/"
