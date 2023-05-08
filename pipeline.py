@@ -49,7 +49,7 @@ def push_data_to_bucket():
     lfs = LocalFileSystem()
     target = FSSpecTarget(fs=lfs, root_path='/tmp/combined/timeseries')
     fs = fsspec.filesystem('s3', **Config.STORAGE_OPTIONS)
-    fs.put(target.root_path, os.path.dirname(Config.DEH_ZARR_BUCKET), recursive=True)
+    fs.put(target.root_path, os.path.dirname(Config.COMBINED_ZARR_BUCKET), recursive=True)
     shutil.rmtree(target.root_path)
 
 if __name__ == '__main__':
