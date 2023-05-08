@@ -95,7 +95,7 @@ def postprocess(ds, data_type):
 def get_available_stations():
     # fetch reference data
     stations_list = get_available_stations_from_cehq()
-    return stations_list[0:2]
+    return stations_list
 
 
 
