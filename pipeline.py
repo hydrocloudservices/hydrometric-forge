@@ -39,7 +39,7 @@ def merge_datasets():
     ds['timestep'] = ds.timestep.astype(object)
     ds['spatial_agg'] = ds.spatial_agg.astype(object)
     ds['time_agg'] = ds.time_agg.astype(object)
-    ds['variable'] = ds.time_agg.astype(object)
+    ds['variable'] = ds.variable.astype(object)
     
         
     ds.to_zarr('/tmp/combined/timeseries', consolidated=True)
