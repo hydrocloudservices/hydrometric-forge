@@ -17,6 +17,7 @@ def merge_datasets():
     fs = fsspec.filesystem('s3', **Config.STORAGE_OPTIONS)
 
     datasets_list = [fs.get_mapper(Config.DEH_ZARR_BUCKET),
+                     fs.get_mapper(Config.HYDAT_ZARR_BUCKET),
                          ]
 
     ds = xr.open_mfdataset(datasets_list, 
@@ -41,15 +42,15 @@ def merge_datasets():
     ds['time_agg'] = ds.time_agg.astype(object)
     ds['variable'] = ds.variable.astype(object)
     
-        
-    ds.to_zarr('/tmp/combined/timeseries', consolidated=True)
+    ds = ds.chunk({'id': 1, 'time_agg': 1, 'timestep': 1, 'time': -1, 'spatial_agg': 1, 'variable': 1})
+    ds.to_zarr('/tmp/combined/timeseries', consolidated=True, mode='w')
 
 @ task()
 def push_data_to_bucket():
     lfs = LocalFileSystem()
     target = FSSpecTarget(fs=lfs, root_path='/tmp/combined/timeseries')
     fs = fsspec.filesystem('s3', **Config.STORAGE_OPTIONS)
-    fs.put(target.root_path, os.path.dirname(Config.COMBINED_ZARR_BUCKET), recursive=True)
+    fs.put(target.root_path, Config.COMBINED_ZARR_BUCKET, recursive=True)
     shutil.rmtree(target.root_path)
 
 if __name__ == '__main__':

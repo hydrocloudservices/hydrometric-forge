@@ -14,6 +14,8 @@ class Config(object):
                        }
 
    
-    DEH_ZARR_BUCKET = f"hydrometric/source/deh/zarr/{datetime.now().strftime('%Y-%m-%d')}/"
+    DEH_ZARR_BUCKET = f"hydrometric/source/deh/zarr/{datetime.now().strftime('%Y-%m-%d')}"
+    #TODO : make dynamic
+    HYDAT_ZARR_BUCKET = f"hydrometric/source/hydat/zarr/20230505"
 
-    COMBINED_ZARR_BUCKET = f"hydrometric/source/combined/zarr/{datetime.now().strftime('%Y-%m-%d')}/"
+    COMBINED_ZARR_BUCKET = f"hydrometric/source/combined/zarr/{datetime.now().strftime('%Y-%m-%d')}"
