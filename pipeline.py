@@ -23,7 +23,7 @@ def merge_datasets():
     ds = xr.open_mfdataset(datasets_list, 
                     engine='zarr',
                     consolidated=True, 
-                    parallel=True)
+                    parallel=False)
     
     #ds = ds.chunk({'id': 1, 'time_agg': 1, 'timestep': 1, 'time': -1, 'spatial_agg': 1})
     for var in ds.variables:
